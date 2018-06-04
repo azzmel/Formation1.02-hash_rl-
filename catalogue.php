@@ -41,23 +41,7 @@ require_once 'inc/connect.php';
 			  </tr>
 			</thead>
 			<?php
-				$formationEmploye = $db->afficherFormation();
-				foreach($formationEmploye as $uneFormation)
-				{
-					echo "<form action='catalogue.php' name='catalogue' role='form'  method='post' accept-charset='utf-8'>";
-					echo "<tr>";
-					echo "<td>$uneFormation->titre </td>";
-					echo "<td class='date'>$uneFormation->date</td>";
-					echo "<td class='duree'>$uneFormation->duree</td>";
-					echo "<td>$uneFormation->credit </td>";
-					echo "<td>$uneFormation->nomPrestataire</td>";
-					echo "<td><a data-toggle='modal' data-target='#modalDescription' href='modal.php?id=$uneFormation->idFormation' class='btn btn-info btn-md'>Détail</a><td>";
-					echo "<td><input type='submit' class='btn btn-primary btn-md' name='Choisir' value='Inscription'></input>";
-					echo "</tr>";
-					echo "<input type='hidden' name='choix' value='$uneFormation->idFormation'/>";
-					echo "<input type='hidden' name='creditChoix' value='$uneFormation->credit'/>";
-					echo "</form>";
-				}
+				$formationEmploye = $db->procedurestockee();
 			?>
 		</table>
       </div>

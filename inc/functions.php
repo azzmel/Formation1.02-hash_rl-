@@ -20,6 +20,26 @@ public function afficherFormation(){
     return $result;
 }
 
+public function procedurestockee(){
+	// execute the stored procedure
+	$sql = 'CALL afficherformation()';
+	// call the stored procedure
+	$q = $this->db->query($sql);
+	$q->setFetchMode(PDO::FETCH_ASSOC); ?>
+
+            <?php while ($r = $q->fetch()): ?>
+                <tr>
+                    <td><?php echo $r['titre'] ?></td>
+                    <td><?php echo $r['date'] ?></td>
+                    <td><?php echo $r['duree'] ?></td>
+                    <td><?php echo $r['credit'] ?></td>
+                    <td><?php echo $r['nomPrestataire'] ?></td>
+                    <td><input type='submit' class='btn btn-primary btn-md' name='Choisir' value='Inscription'></input>
+                </tr>
+            <?php endwhile; ?>
+        </table> <?php
+}
+
 public function formationUser($id){
     $sth=$this->db->prepare("SELECT formation.idFormation,employe.idEmploye, titre, date, etat, duree,etat from employe join selectionner on employe.idEmploye = selectionner.idEmploye
 					   join formation on formation.idFormation = selectionner.idFormation where employe.idEmploye='$id'");
